@@ -709,7 +709,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="תנאי שימוש">
     <meta name="twitter:description" content="תנאי השימוש באתר - הזכויות והחובות של המשתמשים">
-    <style>
+    <meta name="theme-color" content="#26292c">
+
+
+<style>
 :root{--ink:#191b1e;--inksoft:#41464a;--dark:#202327;--silver:#edf0f2;--line:rgba(29,34,38,.35)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:#202224}
@@ -797,7 +800,21 @@ body.show-thanks #landing-page{display:none}body.show-thanks #thanks-page{displa
 @media(max-width:360px){.hero{min-height:740px;padding-inline:18px}.lead{font-size:23px}h1{font-size:30px}.sub{font-size:18px}.steps{font-size:17px}.step-item h3{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}}
 </style>
-    <style data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1
+
+
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
+    <!-- Mickidum Accessibility Toolbar lazy-loaded by runtime -->
+<style data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1
    Generic responsive layer for imported MHTML sites. The source archive often
    contains a desktop-only header and large fixed-width grids; this layer keeps
    the original desktop design intact while making editor/tablet/mobile previews
@@ -1032,11 +1049,85 @@ body.zappy-mhtml-menu-open .zappy-mhtml-menu-toggle span:nth-child(3) {
   [data-zappy-mhtml-nav="true"] a:focus-visible {
     background: rgba(255, 255, 255, 0.1) !important;
   }
-}</style>
-    
-    <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
-    <!-- Mickidum Accessibility Toolbar lazy-loaded by runtime -->
+}</style><script data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1" defer="">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1 */
+(function() {
+  function initFaqAccordions() {
+    document.querySelectorAll('.faq-answer').forEach(function(answer, index) {
+      var item = answer.parentElement;
+      if (!item) return;
+      var trigger = item.querySelector('button, [role="button"], summary');
+      if (!trigger || trigger.dataset.zappyMhtmlFaqReady === 'true') return;
+
+      item.dataset.zappyMhtmlFaqItem = 'true';
+      trigger.dataset.zappyMhtmlFaqReady = 'true';
+      if (!answer.id) answer.id = 'zappy-mhtml-faq-answer-' + index;
+      trigger.setAttribute('aria-controls', answer.id);
+
+      function setOpen(open) {
+        item.classList.toggle('open', open);
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
+      }
+
+      setOpen(item.classList.contains('open'));
+      trigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        setOpen(!item.classList.contains('open'));
+      }, true);
+    });
+  }
+
+  function closeMenu() {
+    document.body.classList.remove('zappy-mhtml-menu-open');
+    document.querySelectorAll('[data-zappy-mhtml-menu-toggle]').forEach(function(btn) {
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function initHeaderScroll() {
+    if (document.body.dataset.zappyMhtmlScrollReady === 'true') return;
+    if (!document.querySelector('[data-zappy-mhtml-header]')) return;
+    document.body.dataset.zappyMhtmlScrollReady = 'true';
+    var onScroll = function() {
+      document.body.classList.toggle('zappy-mhtml-scrolled', window.scrollY > 8);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  function init() {
+    initFaqAccordions();
+    initHeaderScroll();
+    var toggle = document.querySelector('[data-zappy-mhtml-menu-toggle]');
+    var nav = document.querySelector('[data-zappy-mhtml-nav]');
+    if (!toggle || !nav || toggle.dataset.zappyMhtmlReady === 'true') return;
+    toggle.dataset.zappyMhtmlReady = 'true';
+    toggle.addEventListener('click', function() {
+      var open = !document.body.classList.contains('zappy-mhtml-menu-open');
+      document.body.classList.toggle('zappy-mhtml-menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(event) {
+      if (event.target && event.target.closest && event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 900) closeMenu();
+      document.querySelectorAll('[data-zappy-mhtml-faq-item="true"].open > .faq-answer').forEach(function(answer) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();</script>
     <style id="zappy-critical-above-fold-css">
 html{box-sizing:border-box;-webkit-text-size-adjust:100%}*,*::before,*::after{box-sizing:inherit}body{margin:0;min-width:320px;overflow-x:clip}img,svg,video{max-width:100%;height:auto}main{display:block}.container{width:min(100% - 32px,1200px);margin-inline:auto}.navbar,nav.navbar,header .navbar,header[role="banner"]{position:relative;z-index:1000;width:100%}.nav-container,.navbar .container{display:flex;align-items:center;justify-content:space-between;min-height:64px}.logo,.logo-link img{display:block;width:35px;height:35px;object-fit:contain}.nav-menu,#navMenu{list-style:none;margin:0;padding:0}.navbar a,.nav-menu a,#navMenu a,.navbar .nav-links a{color:inherit;text-decoration:none}.navbar .sub-menu,.nav-menu .sub-menu,#navMenu .sub-menu{display:none}.fa,.fas,.far,.fab,.fa-solid,.fa-regular,.fa-brands{display:inline-block;min-width:1em;text-align:center}html:not(#zappy-noop)[data-zappy-site-type="ecommerce"] .phone-header-btn,html:not(#zappy-noop) .navbar:has(.nav-ecommerce-icons)>.phone-header-btn{display:none!important;visibility:hidden!important;width:0!important;height:0!important;pointer-events:none!important}.zappy-preview-empty-store-cta{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important}.zappy-catalog-menu{background:var(--surface-color,var(--surface,linear-gradient(135deg,#f8f9fa 0%,#fff 100%)));border-bottom:1px solid var(--border-color,#e5e7eb);padding:0;position:sticky;top:0;z-index:90}.zappy-catalog-menu[dir=rtl],.zappy-catalog-menu.rtl{direction:rtl}.zappy-catalog-menu[dir=ltr],.zappy-catalog-menu.ltr{direction:ltr}.catalog-menu-container{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:10px 24px;overflow:visible}.catalog-menu-categories,.catalog-menu-list{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:0;padding:0;list-style:none}.catalog-menu-item{display:inline-flex;align-items:center;padding:8px 16px;font-size:14px;font-weight:500;color:var(--text-color,var(--text,#374151));text-decoration:none;border-radius:20px;white-space:nowrap}.catalog-menu-all{background:var(--primary-color,var(--primary,#111));color:var(--text-light,#fff)!important}.catalog-menu-parent{position:relative;display:inline-flex;align-items:center}.catalog-menu-trigger{display:inline-flex;align-items:center;gap:6px}.catalog-menu-chevron{flex-shrink:0}.catalog-menu-parent>.sub-menu{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}.hero-section,.index-hero-section,section[class*="hero"]{position:relative;overflow:hidden}.hero-section,.index-hero-section{min-height:560px}section[data-hero-type*="fullscreen"]{min-height:100vh}.hero-bg-wrapper,.hero-bg-image,section[class*="hero"] [class*="hero-bg"]{position:absolute;inset:0;width:100%;height:100%}.hero-bg-wrapper img,.hero-bg-image img,section[class*="hero"] [data-hero-bg],section[class*="hero"] img[data-hero-background="true"]{width:100%!important;height:100%!important;object-fit:cover!important;display:block}.hero-content,section[class*="hero"] .container{position:relative;z-index:2}@media(max-width:768px){:root{--header-height:72px;--total-header-height:72px;--zappy-mobile-menu-top:72px}html[data-zappy-site-type="ecommerce"] body{padding-top:var(--total-header-height,72px)}html[data-zappy-site-type="ecommerce"] body>nav.navbar,html[data-zappy-site-type="ecommerce"] body>.navbar:not(.zappy-catalog-menu){position:fixed!important;top:0;left:0;right:0;z-index:100000;width:100%;margin-bottom:0}.zappy-catalog-menu{position:fixed;top:var(--header-height,72px);left:0;right:0;z-index:99999}.nav-container,.navbar .container{min-height:60px}.nav-menu,#navMenu{max-width:100vw;overflow-x:hidden}.hero-section,.index-hero-section,section[class*="hero"],section[data-hero-type*="fullscreen"]{min-height:100svh}.hero-bg-wrapper,.hero-bg-image,.hero-scrim{min-height:100svh}}
 
@@ -1188,9 +1279,8 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
 </head>
 <body>
 
-    
-    <main>
-    <section class="legal-page-content terms-conditions">
+
+<main><section class="legal-page-content terms-conditions">
   <div class="container">
 
         <h1>תנאי שימוש</h1>
@@ -1207,12 +1297,12 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         <ul>
             <li><strong>"החברה"</strong> - הפנים הבאות של צחר סטון | ZAHAR STONE</li>
             <li><strong>"המשתמש"</strong> - כל מי שגולש או משתמש באתר</li>
-            <li><strong>"השירותים"</strong> - Stone & Marble Design הניתנים דרך האתר</li>
+            <li><strong>"השירותים"</strong> - [business_industry] הניתנים דרך האתר</li>
         </ul>
 
         <h2>2. תיאור השירותים</h2>
         <p>
-            הפנים הבאות של צחר סטון | ZAHAR STONE מספקת Stone & Marble Design דרך האתר. השירותים כפופים לתנאים המפורטים במסמך זה 
+            הפנים הבאות של צחר סטון | ZAHAR STONE מספקת [business_industry] דרך האתר. השירותים כפופים לתנאים המפורטים במסמך זה 
             ועשויים להשתנות מעת לעת.
         </p>
 
@@ -1300,9 +1390,8 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         
     
   </div>
-</section>
-    </main>
-    <footer class="footer">
+</section></main>
+<footer class="footer">
         <p class="footer-brand">ZAHAR STONE</p>
         <h2 class="footer-title">בקרוב הפתיחה הגדולה.</h2>
         <p class="footer-location">אולם התצוגה החדש של צחר סטון<br>מתחם Redesign, קריית אתא.</p>
@@ -1310,7 +1399,8 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         <div class="footer-legal"><a href="/terms">תקנון הפעילות</a><a href="/privacy">מדיניות הפרטיות</a></div>
       <div class="zappy-legal-links" dir="rtl" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 0;padding:16px;margin-top:12px;border-top:1px solid rgba(128,128,128,0.25);"><a href="/privacy" style="color:inherit;text-decoration:none;opacity:0.8;margin:0 12px;font-size:13px;white-space:nowrap;">מדיניות פרטיות</a><a href="/accessibility" style="color:inherit;text-decoration:none;opacity:0.8;margin:0 12px;font-size:13px;white-space:nowrap;">הצהרת נגישות</a><a href="/terms" style="color:inherit;text-decoration:none;opacity:0.8;margin:0 12px;font-size:13px;white-space:nowrap;">תנאי שימוש</a></div></footer>
     <div data-integration="accessibility:toolbar"></div>
-  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a>
+
 
     <script src="/script.js"></script>
     <script id="zappy-font-awesome-loader">

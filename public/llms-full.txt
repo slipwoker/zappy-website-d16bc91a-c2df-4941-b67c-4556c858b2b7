@@ -2,13 +2,13 @@
 
 תסתכלו טוב במראה. אולי אתם הפנים הבאות של צחר סטון? הצטלמו, שתפו ותייגו אותנו — ואולי תככבו בקמפיין הבא שלנו.
 
-Source: https://zahar-stone-d16bc91a.zappy5.app
+Source: https://example.com
 
 ---
 
 ## הפנים הבאות של צחר סטון | ZAHAR STONE
 
-URL: https://zahar-stone-d16bc91a.zappy5.app
+URL: https://example.com
 Description: תסתכלו טוב במראה. אולי אתם הפנים הבאות של צחר סטון? הצטלמו, שתפו ותייגו אותנו — ואולי תככבו בקמפיין הבא שלנו.
 
 הפנים הבאות של צחר סטון | ZAHAR STONE
@@ -164,7 +164,7 @@ ZAHAR STONE
 
 ## מדיניות פרטיות
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/privacy
+URL: https://example.com/privacy
 Description: מדיניות הפרטיות שלנו - כיצד אנו אוספים, משתמשים ומגנים על המידע שלכם
 
 הפנים הבאות של צחר סטון | ZAHAR STONE
@@ -329,7 +329,7 @@ ZAHAR STONE
 
 ## הצהרת נגישות
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/accessibility
+URL: https://example.com/accessibility
 Description: הצהרת הנגישות שלנו - מחויבותנו לנגישות דיגיטלית
 
 הפנים הבאות של צחר סטון | ZAHAR STONE
@@ -503,7 +503,7 @@ ZAHAR STONE
 
 ## תנאי שימוש
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/terms
+URL: https://example.com/terms
 Description: תנאי השימוש באתר - הזכויות והחובות של המשתמשים
 
 הפנים הבאות של צחר סטון | ZAHAR STONE
@@ -696,7 +696,7 @@ ZAHAR STONE
 
 ## מדיניות פרטיות
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/privacy
+URL: https://example.com/privacy
 Description: מדיניות הפרטיות שלנו - כיצד אנו אוספים, משתמשים ומגנים על המידע שלכם
 
 מדיניות פרטיות
@@ -860,7 +860,7 @@ ZAHAR STONE
 
 ## הצהרת נגישות
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/accessibility
+URL: https://example.com/accessibility
 Description: הצהרת הנגישות שלנו - מחויבותנו לנגישות דיגיטלית
 
 הצהרת נגישות
@@ -1033,7 +1033,7 @@ ZAHAR STONE
 
 ## תנאי שימוש
 
-URL: https://zahar-stone-d16bc91a.zappy5.app/terms
+URL: https://example.com/terms
 Description: תנאי השימוש באתר - הזכויות והחובות של המשתמשים
 
 תנאי שימוש
