@@ -904,6 +904,38 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   margin-bottom: 14px !important;
 }
 
+.hero .hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.hero .hero-logo-mark {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: .24em;
+  direction: ltr;
+  color: #191b1e;
+}
+
+@media (max-width: 520px) {
+.hero .hero-logo-mark {
+  font-size: 21px;
+  letter-spacing: .18em;
+}
+
+.hero .hero-logo {
+  margin-bottom: 12px;
+}
+}
+/* zappy-self-heal */
+.hero .hero-logo { margin-bottom: 18px !important; }
+.hero .hero-logo-mark { font-size: 26px !important; }
+.hero .hero-logo-mark { letter-spacing: .24em !important; }
+
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
