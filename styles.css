@@ -1060,10 +1060,6 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   gap: 12px;
 }
 
-.hero > .hero-spacer {
-  display: none !important;
-}
-
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
