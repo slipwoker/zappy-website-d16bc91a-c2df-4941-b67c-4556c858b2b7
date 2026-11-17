@@ -936,6 +936,26 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 .hero .hero-logo-mark { letter-spacing: .24em !important; }
 
 
+.hero .hero-logo-mark {
+  font-size: 34px;
+  letter-spacing: .22em;
+}
+
+.hero .hero-logo {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 520px) {
+.hero .hero-logo-mark {
+  font-size: 26px;
+  letter-spacing: .16em;
+}
+
+.hero .hero-logo {
+  margin-bottom: 6px;
+}
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
