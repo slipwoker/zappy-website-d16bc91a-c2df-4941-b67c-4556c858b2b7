@@ -784,6 +784,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   min-height: clamp(560px, calc(100svh - 50px), 720px) !important;
   padding-top: 32px !important;
   padding-bottom: 30px !important;
+  padding: 26px clamp(22px,7%,58px) 43px;
 }
 
 .hero .hero-spacer {
@@ -953,6 +954,73 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 
 .hero .hero-logo {
   margin-bottom: 6px;
+}
+}
+
+.hero .hero-spacer {
+  height: 12px;
+  flex: 0 0 12px;
+}
+
+.hero .hero-copy {
+  margin-top: 6px;
+}
+
+.hero .lead {
+  margin: 0 0 20px;
+}
+
+.hero h1 {
+  margin: 0 auto 20px;
+}
+
+.hero .rule {
+  margin: 0 auto 18px;
+}
+
+.hero .sub {
+  line-height: 1.6;
+}
+
+.hero .hero-bottom {
+  margin-top: 26px;
+  gap: 12px;
+}
+
+@media (max-width: 520px) {
+.hero {
+  padding: 16px 20px 28px;
+  min-height: 0 !important;
+}
+
+.hero .hero-spacer {
+  height: 4px;
+  flex-basis: 4px;
+}
+
+.hero .hero-copy {
+  margin-top: 10px;
+}
+
+.hero .lead {
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  margin-bottom: 16px;
+}
+
+.hero .rule {
+  margin-bottom: 14px;
+}
+
+.hero .sub {
+  line-height: 1.55;
+}
+
+.hero .hero-bottom {
+  margin-top: 20px;
+  gap: 10px;
 }
 }
 

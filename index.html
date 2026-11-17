@@ -722,7 +722,16 @@ a{color:inherit}
 .mirror{position:relative;isolation:isolate;min-height:calc(100vh - 48px);overflow:hidden;background:radial-gradient(ellipse 70% 26% at 17% 5%,#ffffffbd 0%,transparent 75%),linear-gradient(128deg,transparent 3%,#ffffffa1 18%,#d1d6da85 30%,transparent 43%),linear-gradient(106deg,transparent 51%,#ffffff92 66%,transparent 78%),linear-gradient(9deg,#a6adb2 0%,#d8dde0 18%,#f4f6f7 32%,#bfc5ca 51%,#f4f5f6 66%,#c1c8ce 84%,#eff1f2 100%);border:1px solid #ced2d4;box-shadow:0 0 0 1px #0f1113,inset 0 0 36px rgba(22,28,33,.12),0 4px 16px rgba(0,0,0,.3)}
 .mirror::before{position:absolute;content:"";inset:0;z-index:-1;pointer-events:none;opacity:.54;background:linear-gradient(146deg,transparent 1%,#fff8 20%,transparent 28%,transparent 63%,#fff6 80%,transparent 92%),repeating-linear-gradient(90deg,transparent 0,transparent 24px,#ffffff0a 25px,transparent 26px),linear-gradient(96deg,#00000010,transparent 19%,#fff2 50%,transparent 81%,#00000013)}
 .mirror::after{content:"";inset:0;position:absolute;pointer-events:none;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.28),transparent 10%,transparent 88%,rgba(38,44,49,.1))}
-.hero{min-height:min(900px,100svh - 50px);min-height:clamp(680px,calc(100svh - 50px),900px);padding:50px clamp(22px,7%,58px) 43px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;align-items:center}
+.hero {
+  min-height: min(900px,100svh - 50px);
+  min-height: clamp(680px,calc(100svh - 50px),900px);
+  padding: 26px clamp(22px,7%,58px) 43px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
 .hero-spacer{height:36px;flex:0 0 36px}
 .hero-copy{width:100%;max-width:520px;margin:auto 0}
 .lead{font-size:clamp(24px,5.9vw,35px);line-height:1.23;font-weight:650;letter-spacing:-.045em;margin:0 0 36px}
