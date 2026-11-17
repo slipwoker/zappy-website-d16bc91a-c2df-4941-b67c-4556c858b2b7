@@ -764,6 +764,22 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   min-height: 52px;
 }
 
+.registration .consent span,
+.registration .consent a,
+.registration .parent-fields h3,
+.registration .field .label-note,
+.registration .form-intro {
+  color: #17191B !important;
+}
+
+.registration .consents label.consent span {
+  color: #17191B !important;
+}
+
+.registration .submit {
+  color: #17191B !important;
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
