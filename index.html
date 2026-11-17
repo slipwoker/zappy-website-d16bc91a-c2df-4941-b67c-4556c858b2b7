@@ -1314,7 +1314,7 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         <p class="form-intro" style="color: #000000">העלו את התמונה שלכם, השאירו פרטים — ואולי נתראה בקמפיין הבא של צחר סטון.</p>
         <form class="form" id="entry-form" novalidate="">
           <div class="upload-area" id="upload-area">
-            <input id="portrait" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required="" aria-label="העלאת התמונה שלכם">
+            <input id="portrait" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required="" aria-label="העלאת התמונה שלכם" name="portrait">
             <span class="upload-icon" aria-hidden="true" style="color: #000000">＋</span>
             <strong class="upload-title" id="upload-title" style="color: #000000">העלאת התמונה שלכם</strong>
             <span class="upload-hint" id="upload-hint" style="color: #000000">בחרו תמונה מהגלריה או צלמו עכשיו</span>
@@ -1401,9 +1401,25 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
     if(!file.files||!file.files.length){notice.textContent='כדי להמשיך יש לבחור תמונה.';notice.classList.add('show');return}
     if(file.files[0].size>10*1024*1024){notice.textContent='התמונה גדולה מ־10MB. יש לבחור קובץ קטן יותר.';notice.classList.add('show');return}
     if(!this.reportValidity())return;
-    notice.textContent='זהו דגם חזותי של האתר. הטופס עדיין אינו מחובר למערכת שמירת הרשמות ושליחת מיילים.';
-    notice.classList.add('show');
-    notice.scrollIntoView({behavior:'smooth',block:'center'});
+    var submitBtn=this.querySelector('.submit');
+    var originalText=submitBtn.textContent;
+    submitBtn.disabled=true;
+    submitBtn.textContent='שולח...';
+    var data=new FormData(this);
+    if(file.files && file.files[0]){ data.append('portrait', file.files[0], file.files[0].name); }
+    fetch('https://forminit.com/f/137g2pnw8mm', { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
+      .then(function(res){
+        if(!res.ok){ throw new Error('HTTP '+res.status); }
+        return res.text();
+      })
+      .then(function(){ window.location.hash='#thanks'; })
+      .catch(function(){
+        submitBtn.disabled=false;
+        submitBtn.textContent=originalText;
+        notice.textContent='אירעה שגיאה בשליחת ההרשמה. אנא נסו שוב מאוחר יותר.';
+        notice.classList.add('show');
+        notice.scrollIntoView({behavior:'smooth',block:'center'});
+      });
   });
   if(window.location.hash==='#thanks'){document.body.classList.add('show-thanks')}
   window.addEventListener('hashchange',function(){document.body.classList.toggle('show-thanks',window.location.hash==='#thanks')});
