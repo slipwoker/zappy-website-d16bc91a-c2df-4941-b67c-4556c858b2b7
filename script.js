@@ -1975,7 +1975,83 @@ if (document.readyState === 'complete') {
             initContactForm();
         }
     })(); // End of IIFE
-    
+
+/* ZAPPY_CUSTOM_JS_START:ab75fcf126d8 */
+(function () {
+  function __zappyCustomInit() {
+    try {
+(function(){
+  var BODY=document.body;
+  var RESULT_KEY='zahar_registration_done';
+  var MINOR_KEY='zahar_registration_minor';
+  var form=document.getElementById('entry-form');
+  if(form){
+    var salt=form.getAttribute('data-submit-handler');
+    if(!salt){
+      form.setAttribute('data-submit-handler','1');
+      form.addEventListener('submit', function(event){
+        var ageEl=document.getElementById('age');
+        var minor=false;
+        if(ageEl && ageEl.value!==''){
+          var n=Number(ageEl.value);
+          minor=(!isNaN(n)&&n>0&&n<18);
+        }
+        form.setAttribute('data-zahar-minor', minor?'1':'0');
+        try{
+          if(minor){ sessionStorage.setItem(MINOR_KEY,'1'); }
+          else{ sessionStorage.removeItem(MINOR_KEY); }
+        }catch(e){}
+      }, true);
+    }
+  }
+  var isThanks=(window.location.hash==='#thanks');
+  var pending=false;
+  var minor=false;
+  try{
+    pending=sessionStorage.getItem(RESULT_KEY)==='1';
+    minor=sessionStorage.getItem(MINOR_KEY)==='1';
+  }catch(e){}
+  var trust=pending||minor;
+  if(isThanks){
+    if(!trust){
+      try{ sessionStorage.setItem(RESULT_KEY,'1'); }catch(e){}
+    }
+    BODY.classList.add('show-thanks');
+    if(minor){
+      var notice=document.getElementById('minor-notice');
+      if(notice){ notice.classList.add('show'); }
+    }
+  } else {
+    BODY.classList.remove('show-thanks');
+  }
+  window.addEventListener('hashchange', function(){
+    if(window.location.hash==='#thanks'){
+      var min=false;
+      try{ min=sessionStorage.getItem(MINOR_KEY)==='1'; }catch(e){}
+      BODY.classList.add('show-thanks');
+      if(min){
+        var notice=document.getElementById('minor-notice');
+        if(notice){ notice.classList.add('show'); }
+      }
+    } else {
+      BODY.classList.remove('show-thanks');
+    }
+  });
+  if(form){
+    var orig=form.tagName;
+  }
+})();
+    } catch (e) {
+      if (typeof console !== 'undefined' && console.warn) { console.warn('[zappy-custom-js]', e); }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', __zappyCustomInit);
+  } else {
+    __zappyCustomInit();
+  }
+})();
+/* ZAPPY_CUSTOM_JS_END:ab75fcf126d8 */
 
 
 /* ZAPPY_PUBLISHED_LIGHTBOX_RUNTIME */

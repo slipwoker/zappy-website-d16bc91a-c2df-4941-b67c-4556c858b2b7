@@ -701,6 +701,69 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   color: #ffffff !important;
 }
 
+#thanks-page {
+  padding: 60px 27px 50px;
+}
+
+#thanks-page .thanks-logo {
+  font-size: 24px;
+  letter-spacing: .12em;
+  direction: ltr;
+  margin: 0 0 14px;
+  font-weight: 650;
+  color: #000;
+}
+
+#thanks-page h1 {
+  margin: 0 0 10px;
+  color: #000;
+}
+
+#thanks-page .rule {
+  margin: 10px auto 24px;
+}
+
+#thanks-page p {
+  color: #000;
+}
+
+#thanks-page .thanks-closing {
+  margin-bottom: 14px;
+}
+
+#thanks-page .thanks-follow {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 18px;
+}
+
+#thanks-page .instagram {
+  margin-bottom: 22px;
+}
+
+#thanks-page .minor-notice {
+  display: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  background: rgba(255,255,255,.45);
+  border: 1px solid rgba(35,41,46,.4);
+  border-radius: 5px;
+  padding: 11px 16px;
+  margin: 0 auto 22px;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+#thanks-page .minor-notice.show {
+  display: block;
+}
+
+#thanks-page .cta {
+  margin-top: 4px;
+  min-height: 52px;
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
