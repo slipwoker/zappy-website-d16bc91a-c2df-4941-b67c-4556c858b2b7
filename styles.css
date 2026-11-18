@@ -1079,6 +1079,16 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   margin-top: 0;
 }
 
+#register .consents .consent,
+#register .consents .consent span,
+#register .consents .consent a {
+  color: #1d2022 !important;
+}
+
+#register .consents .consent a {
+  text-decoration: underline;
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
