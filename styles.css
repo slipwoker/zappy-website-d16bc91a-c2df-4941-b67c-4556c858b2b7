@@ -777,7 +777,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .registration .submit {
-  color: #17191B !important;
+  color: #ffffff !important;
 }
 
 .hero {
@@ -931,11 +931,13 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   margin-bottom: 12px;
 }
 }
+
 /* zappy-self-heal */
 .hero .hero-logo { margin-bottom: 18px !important; }
-.hero .hero-logo-mark { font-size: 26px !important; }
-.hero .hero-logo-mark { letter-spacing: .24em !important; }
 
+.hero .hero-logo-mark { font-size: 26px !important; }
+
+.hero .hero-logo-mark { letter-spacing: .24em !important; }
 
 .hero .hero-logo-mark {
   font-size: 34px;
