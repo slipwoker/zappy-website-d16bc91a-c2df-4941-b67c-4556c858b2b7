@@ -1062,6 +1062,23 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   gap: 12px;
 }
 
+.registration .submit[aria-disabled="true"] {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.registration #whatsapp-submit {
+  width: 100%;
+  margin-top: 14px;
+  min-height: 60px;
+  font-weight: 750;
+}
+
+.registration .consents {
+  margin-top: 0;
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));

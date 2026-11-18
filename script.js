@@ -2053,6 +2053,61 @@ if (document.readyState === 'complete') {
 })();
 /* ZAPPY_CUSTOM_JS_END:ab75fcf126d8 */
 
+/* ZAPPY_CUSTOM_JS_START:de24eb1c0e5e */
+(function () {
+  function __zappyCustomInit() {
+    try {
+(function(){
+  var form = document.querySelector('#entry-form');
+  if(!form) return;
+  var btn = document.getElementById('whatsapp-submit');
+  var required = form.querySelectorAll('input[type="checkbox"][required]');
+  var msgEl = document.getElementById('form-message');
+  if(!btn) return;
+
+  var PHONE = '048838008';
+
+  btn.addEventListener('click', function(e){
+    var allChecked = true;
+    required.forEach(function(cb){ if(!cb.checked) allChecked = false; });
+    if(!allChecked){
+      e.preventDefault();
+      btn.setAttribute('aria-disabled','true');
+      if(msgEl){ msgEl.textContent='כדי להמשיך יש לאשר את כל תנאי ההשתתפות המסומנים בכוכבית.'; msgEl.classList.add('show'); }
+      return;
+    }
+    var text = 'היי! אני רוצה להירשם לתחרות "הפנים הבאות של צחר סטון".%0A%0A' +
+      'שם מלא:%0A' +
+      'גיל:%0A' +
+      'טלפון:%0A' +
+      'מייל:%0A' +
+      'אינסטגרם:%0A%0A' +
+      'מצרף/ת גם את התמונה שצילמתי.';
+    btn.href = 'https://wa.me/' + PHONE + '?text=' + text;
+  });
+
+  required.forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var allChecked = true;
+      required.forEach(function(c){ if(!c.checked) allChecked = false; });
+      if(allChecked){ btn.removeAttribute('aria-disabled'); }
+      else { btn.setAttribute('aria-disabled','true'); }
+      if(msgEl){ msgEl.classList.remove('show'); }
+    });
+  });
+})();
+    } catch (e) {
+      if (typeof console !== 'undefined' && console.warn) { console.warn('[zappy-custom-js]', e); }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', __zappyCustomInit);
+  } else {
+    __zappyCustomInit();
+  }
+})();
+/* ZAPPY_CUSTOM_JS_END:de24eb1c0e5e */
+
 
 /* ZAPPY_PUBLISHED_LIGHTBOX_RUNTIME */
 (function(){
