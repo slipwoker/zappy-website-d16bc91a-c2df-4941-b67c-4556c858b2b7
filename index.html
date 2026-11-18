@@ -1322,7 +1322,7 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         <p class="form-intro" style="color: #000000">העלו את התמונה שלכם, השאירו פרטים — ואולי נתראה בקמפיין הבא של צחר סטון.</p>
         <form class="form" id="entry-form" novalidate="">
           <div class="upload-area" id="upload-area">
-            <input id="portrait" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required="" aria-label="העלאת התמונה שלכם" name="portrait">
+            <input id="portrait" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif" required="" aria-label="העלאת התמונה שלכם" name="fi-file-photo">
             <span class="upload-icon" aria-hidden="true" style="color: #000000">＋</span>
             <strong class="upload-title" id="upload-title" style="color: #000000">העלאת התמונה שלכם</strong>
             <span class="upload-hint" id="upload-hint" style="color: #000000">בחרו תמונה מהגלריה או צלמו עכשיו</span>
@@ -1394,40 +1394,87 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
   var preview=document.getElementById('upload-preview');
   var upload=document.getElementById('upload-area');
   var url=null;
+  var ALLOWED_TYPES={ 'image/jpeg':1, 'image/jpg':1, 'image/png':1, 'image/webp':1, 'image/heic':1, 'image/heif':1 };
+  var ALLOWED_EXT=/\.(jpe?g|png|webp|heic|heif)$/i;
+  function isAllowedImage(chosen){
+    if(!chosen) return false;
+    if(ALLOWED_TYPES[String(chosen.type).toLowerCase()]) return true;
+    // Fallback: some browsers report empty MIME for HEIC/HEIF — check extension.
+    if(ALLOWED_EXT.test(chosen.name)) return true;
+    return false;
+  }
+  function resetUploadUI(){
+    if(url){URL.revokeObjectURL(url);url=null}
+    preview.removeAttribute('src');
+    upload.classList.remove('has-preview');
+    document.getElementById('upload-title').textContent='העלאת התמונה שלכם';
+    document.getElementById('upload-hint').textContent='בחרו תמונה מהגלריה או צלמו עכשיו';
+  }
+  function showNotice(msg){
+    var notice=document.getElementById('form-message');
+    notice.textContent=msg;
+    notice.classList.add('show');
+      notice.scrollIntoView({behavior:'smooth',block:'center'});
+  }
   file.addEventListener('change',function(){
     if(url){URL.revokeObjectURL(url);url=null}
     var chosen=file.files&&file.files[0];
-    if(chosen){
-      document.getElementById('upload-title').textContent=chosen.name;
-      document.getElementById('upload-hint').textContent='לחצו כדי להחליף תמונה';
-      if(chosen.type.startsWith('image/')){url=URL.createObjectURL(chosen);preview.src=url;upload.classList.add('has-preview')}
-    }else{preview.removeAttribute('src');upload.classList.remove('has-preview');document.getElementById('upload-title').textContent='העלאת התמונה שלכם';document.getElementById('upload-hint').textContent='בחרו תמונה מהגלריה או צלמו עכשיו'}
+    if(!chosen){ resetUploadUI(); return; }
+    if(!isAllowedImage(chosen)){
+      file.value='';
+      resetUploadUI();
+      showNotice('הקובץ שנבחר אינו תמונה נתמכת. יש לבחור קובץ JPG, PNG, WEBP או HEIC.');
+      return;
+    }
+    document.getElementById('upload-title').textContent=chosen.name;
+    document.getElementById('upload-hint').textContent='הקובץ נבחר בהצלחה. לחצו כדי להחליף תמונה';
+    var canPreview = String(chosen.type).toLowerCase().startsWith('image/') && chosen.type.toLowerCase()!=='image/heic' && chosen.type.toLowerCase()!=='image/heif';
+    if(canPreview){
+      try{ url=URL.createObjectURL(chosen); preview.src=url; upload.classList.add('has-preview'); }
+      catch(e){ /* fall through to non-preview confirmation */ }
+    }
   });
+  var isSubmitting=false;
   document.getElementById('entry-form').addEventListener('submit',function(event){
     event.preventDefault();
     var notice=document.getElementById('form-message');
     notice.classList.remove('show');
-    if(!file.files||!file.files.length){notice.textContent='כדי להמשיך יש לבחור תמונה.';notice.classList.add('show');return}
-    if(file.files[0].size>10*1024*1024){notice.textContent='התמונה גדולה מ־10MB. יש לבחור קובץ קטן יותר.';notice.classList.add('show');return}
-    if(!this.reportValidity())return;
+    if(isSubmitting) return;
+    if(!file.files||!file.files.length){ showNotice('כדי להמשיך יש לבחור תמונה.'); return; }
+    if(!isAllowedImage(file.files[0])){ showNotice('הקובץ שנבחר אינו תמונה נתמכת. יש לבחור קובץ JPG, PNG, WEBP או HEIC.'); return; }
+    if(file.files[0].size>10*1024*1024){ showNotice('התמונה גדולה מ־10MB. יש לבחור קובץ קטן יותר.'); return; }
+    if(!this.reportValidity()) return;
+    isSubmitting=true;
     var submitBtn=this.querySelector('.submit');
     var originalText=submitBtn.textContent;
     submitBtn.disabled=true;
     submitBtn.textContent='שולח...';
     var data=new FormData(this);
-    if(file.files && file.files[0]){ data.append('portrait', file.files[0], file.files[0].name); }
+    // Ensure the file is attached under Forminit's official field name.
+    if(file.files && file.files[0]){ data.set('fi-file-photo', file.files[0], file.files[0].name); }
     fetch('https://forminit.com/f/137g2pnw8mm', { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
       .then(function(res){
-        if(!res.ok){ throw new Error('HTTP '+res.status); }
-        return res.text();
+        return res.text().then(function(txt){
+          var ok=false; var errMsg='';
+          if(res.ok){ ok=true; }
+          // Forminit returns JSON { success: true/false, message } — don't trust HTTP alone.
+          try{
+            var json=JSON.parse(txt);
+            if(json && typeof json.success==='boolean'){
+              ok=json.success;
+              if(!ok && json.message){ errMsg=json.message; }
+            }
+          }catch(e){ /* non-JSON response: fall back to res.ok */ }
+          if(!ok){ throw new Error(errMsg||('שירות Forminit החזיר תשובת שגיאה (HTTP '+res.status+')')); }
+          return true;
+        });
       })
       .then(function(){ window.location.hash='#thanks'; })
-      .catch(function(){
+      .catch(function(err){
+        isSubmitting=false;
         submitBtn.disabled=false;
         submitBtn.textContent=originalText;
-        notice.textContent='אירעה שגיאה בשליחת ההרשמה. אנא נסו שוב מאוחר יותר.';
-        notice.classList.add('show');
-        notice.scrollIntoView({behavior:'smooth',block:'center'});
+        showNotice(err && err.message ? err.message : 'אירעה שגיאה בשליחת ההרשמה. אנא נסו שוב מאוחר יותר.');
       });
   });
   if(window.location.hash==='#thanks'){document.body.classList.add('show-thanks')}
