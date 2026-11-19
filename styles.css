@@ -698,7 +698,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .hero .cta, .registration .submit, #thanks-page .cta {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 #thanks-page {
@@ -777,7 +777,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .registration .submit {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .hero {
