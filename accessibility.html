@@ -710,10 +710,7 @@
     <meta name="twitter:title" content="הצהרת נגישות">
     <meta name="twitter:description" content="הצהרת הנגישות שלנו - מחויבותנו לנגישות דיגיטלית">
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://www.zahar-stone.co.il#organization","name":"הפנים הבאות של צחר סטון | ZAHAR STONE","url":"https://www.zahar-stone.co.il","description":"תסתכלו טוב במראה. אולי אתם הפנים הבאות של צחר סטון? הצטלמו, שתפו ותייגו אותנו — ואולי תככבו בקמפיין הבא שלנו.","address":{"@type":"PostalAddress","streetAddress":"מתחם Redesign | קרית אתא, קריית אתא, ישראל"},"contactPoint":[{"@type":"ContactPoint","contactType":"customer service","email":"arc.zaharstone@gmail.com","telephone":"04-883-8008"}]},{"@type":"WebSite","@id":"https://www.zahar-stone.co.il#website","url":"https://www.zahar-stone.co.il","name":"הפנים הבאות של צחר סטון | ZAHAR STONE","publisher":{"@id":"https://www.zahar-stone.co.il#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.zahar-stone.co.il"},{"@type":"ListItem","position":2,"name":"Accessibility","item":"https://www.zahar-stone.co.il/accessibility"}]}]}</script>
-    <meta name="theme-color" content="#26292c">
-
-
-<style>
+    <style>
 :root{--ink:#191b1e;--inksoft:#41464a;--dark:#202327;--silver:#edf0f2;--line:rgba(29,34,38,.35)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:#202224}
@@ -801,7 +798,7 @@ body.show-thanks #landing-page{display:none}body.show-thanks #thanks-page{displa
 @media(max-width:360px){.hero{min-height:740px;padding-inline:18px}.lead{font-size:23px}h1{font-size:30px}.sub{font-size:18px}.steps{font-size:17px}.step-item h3{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}}
 </style>
-<style data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1
+    <style data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1
    Generic responsive layer for imported MHTML sites. The source archive often
    contains a desktop-only header and large fixed-width grids; this layer keeps
    the original desktop design intact while making editor/tablet/mobile previews
@@ -1036,95 +1033,8 @@ body.zappy-mhtml-menu-open .zappy-mhtml-menu-toggle span:nth-child(3) {
   [data-zappy-mhtml-nav="true"] a:focus-visible {
     background: rgba(255, 255, 255, 0.1) !important;
   }
-}</style><script data-zappy-mhtml-responsive="ZAPPY_MHTML_RESPONSIVE_IMPORT_V1" defer="">/* ZAPPY_MHTML_RESPONSIVE_IMPORT_V1 */
-(function() {
-  function initFaqAccordions() {
-    document.querySelectorAll('.faq-answer').forEach(function(answer, index) {
-      var item = answer.parentElement;
-      if (!item) return;
-      var trigger = item.querySelector('button, [role="button"], summary');
-      if (!trigger || trigger.dataset.zappyMhtmlFaqReady === 'true') return;
-
-      item.dataset.zappyMhtmlFaqItem = 'true';
-      trigger.dataset.zappyMhtmlFaqReady = 'true';
-      if (!answer.id) answer.id = 'zappy-mhtml-faq-answer-' + index;
-      trigger.setAttribute('aria-controls', answer.id);
-
-      function setOpen(open) {
-        item.classList.toggle('open', open);
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
-      }
-
-      setOpen(item.classList.contains('open'));
-      trigger.addEventListener('click', function(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        setOpen(!item.classList.contains('open'));
-      }, true);
-    });
-  }
-
-  function closeMenu() {
-    document.body.classList.remove('zappy-mhtml-menu-open');
-    document.querySelectorAll('[data-zappy-mhtml-menu-toggle]').forEach(function(btn) {
-      btn.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  function initHeaderScroll() {
-    if (document.body.dataset.zappyMhtmlScrollReady === 'true') return;
-    if (!document.querySelector('[data-zappy-mhtml-header]')) return;
-    document.body.dataset.zappyMhtmlScrollReady = 'true';
-    var onScroll = function() {
-      document.body.classList.toggle('zappy-mhtml-scrolled', window.scrollY > 8);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  function init() {
-    initFaqAccordions();
-    initHeaderScroll();
-    var toggle = document.querySelector('[data-zappy-mhtml-menu-toggle]');
-    var nav = document.querySelector('[data-zappy-mhtml-nav]');
-    if (!toggle || !nav || toggle.dataset.zappyMhtmlReady === 'true') return;
-    toggle.dataset.zappyMhtmlReady = 'true';
-    toggle.addEventListener('click', function() {
-      var open = !document.body.classList.contains('zappy-mhtml-menu-open');
-      document.body.classList.toggle('zappy-mhtml-menu-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    nav.addEventListener('click', function(event) {
-      if (event.target && event.target.closest && event.target.closest('a')) closeMenu();
-    });
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') closeMenu();
-    });
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 900) closeMenu();
-      document.querySelectorAll('[data-zappy-mhtml-faq-item="true"].open > .faq-answer').forEach(function(answer) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();</script>
-
-
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+}</style>
+    
     <!-- Cookie Consent -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
     <!-- Mickidum Accessibility Toolbar lazy-loaded by runtime -->
@@ -1278,7 +1188,8 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
     </style>
 </head>
 <body>
-<main><section class="legal-page-content accessibility-statement">
+<main>
+    <section class="legal-page-content accessibility-statement">
   <div class="container">
 
         <h1>הצהרת נגישות</h1>
@@ -1369,8 +1280,9 @@ body:has(.zappy-announcement-bar) main > section[class*="hero"]:first-of-type {
         
     
   </div>
-</section></main>
-<footer class="footer">
+</section>
+    </main>
+    <footer class="footer">
         <p class="footer-brand" style="color: #000000">ZAHAR STONE</p>
         <h2 class="footer-title" style="color: #000000">בקרוב הפתיחה הגדולה.</h2>
         <p class="footer-location" style="color: #000000">מתחם Redesign | קרית אתא, קריית אתא, ישראל</p>
