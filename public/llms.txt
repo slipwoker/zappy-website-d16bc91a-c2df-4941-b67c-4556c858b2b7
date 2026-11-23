@@ -7,21 +7,21 @@
 ## Pages
 
 ### Home
-https://zahar-stone.zappy5.app
+https://www.zahar-stone.co.il
 תסתכלו טוב במראה. אולי אתם הפנים הבאות של צחר סטון? הצטלמו, שתפו ותייגו אותנו — ואולי תככבו בקמפיין הבא שלנו.
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://zahar-stone.zappy5.app/privacy
+https://www.zahar-stone.co.il/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://zahar-stone.zappy5.app/terms
+https://www.zahar-stone.co.il/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://zahar-stone.zappy5.app/accessibility
+https://www.zahar-stone.co.il/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
@@ -61,6 +61,6 @@ Stone & Marble Design
 
 # Machine-readable feeds
 
-- Sitemap (XML): https://zahar-stone.zappy5.app/sitemap.xml
-- Robots: https://zahar-stone.zappy5.app/robots.txt
-- Flattened page text (for LLMs): https://zahar-stone.zappy5.app/llms-full.txt
+- Sitemap (XML): https://www.zahar-stone.co.il/sitemap.xml
+- Robots: https://www.zahar-stone.co.il/robots.txt
+- Flattened page text (for LLMs): https://www.zahar-stone.co.il/llms-full.txt
