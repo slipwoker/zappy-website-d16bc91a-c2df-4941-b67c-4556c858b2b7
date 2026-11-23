@@ -698,7 +698,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .hero .cta, .registration .submit, #thanks-page .cta {
-  color: #000000 !important;
+  color: #25D366 !important;
 }
 
 #thanks-page {
@@ -777,7 +777,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .registration .submit {
-  color: #000000 !important;
+  color: #25D366 !important;
 }
 
 .hero {
@@ -1063,7 +1063,7 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .registration .submit[aria-disabled="true"] {
-  opacity: .45;
+  opacity: 1;
   cursor: not-allowed;
   pointer-events: auto;
 }
