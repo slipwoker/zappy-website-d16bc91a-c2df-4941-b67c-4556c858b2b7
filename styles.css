@@ -1101,6 +1101,20 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
   border: 1px solid #121516 !important;
 }
 
+#zappy-section-0 {
+  position: relative;
+}
+
+#zappy-section-0::after {
+  content: '';
+  position: absolute;
+  left: clamp(23px, 7.5%, 65px);
+  right: clamp(23px, 7.5%, 65px);
+  bottom: 0;
+  height: 1px;
+  background: rgba(35, 40, 44, 0.26);
+}
+
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
 :root {
   --zappy-header-stack-height: calc(var(--zappy-announcement-height, 40px) + var(--header-height, 72px));
