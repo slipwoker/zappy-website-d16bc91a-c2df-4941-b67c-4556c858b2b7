@@ -1090,9 +1090,15 @@ div[id*="mic-access-tool-box"] button[class*="reset"] * {
 }
 
 .hero .cta {
-  color: var(--background-color, var(--background, var(--bg-light, #ffffff))) !important;
+  color: #000000 !important;
   background: var(--background-color, var(--background, var(--bg-light, #ffffff))) !important;
   border-color: #121516 !important;
+}
+
+.hero .cta {
+  color: #000000 !important;
+  background: var(--background-color, var(--background, var(--bg-light, #ffffff))) !important;
+  border: 1px solid #121516 !important;
 }
 
 /* ZAPPY_ANNOUNCEMENT_HEADER_OFFSET_CSS_V3 */
